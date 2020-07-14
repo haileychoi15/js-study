@@ -44,3 +44,24 @@ function getName(name){
 }
 
 var getName = (name) => "kim " + name; // 위와 같은 함수 선언
+
+
+
+// ***** call stack *****
+
+function foo(b) {
+    var a = 5;
+    return a * b + 10;
+}
+
+function bar(x){
+    var y = 3;
+    return foo(x * y);
+}
+
+console.log(bar(6));
+
+// call stack에 bar() -> foo() 순서대로 쌓인다.
+// foo함수의 결과를 받아올 때까지 bar 함수는 메모리 공간에서 사라지지 못하고 기다린다.
+// foo의 경우 실행이 끝나고 return문이 실행되면 메모리 공간에서 사라진다.
+// 함수를 연속적으로 계속 호출되어 브라우저에서 지정된 횟수가 넘게 쌓이면 call stack이 꽉 차버리면서 오류가 발생한다.
