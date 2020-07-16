@@ -2,9 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+    <table class="w3-table-all">
+        <tbody>
+            <tr>
+                <td>Expression1</td>
+            </tr>
+            <tr>
+                <td>Expression2</td>
+            </tr>
+            <tr>
+                <td>Expression3</td>
+            </tr>
+            <tr>
+                <td>Expression4</td>
+            </tr>
+            <tr>
+                <td>Expression5</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="div-description">
+        <p>What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?</p>
+        <p>Meaning : Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?</p>
+    </div>
+
+<script>
+    var base = document.querySelector(".w3-table-all tr:nth-child(3)");
+    console.log(base);
+
+    var parent = document.querySelector(".w3-table-all tbody"); // tbody
+
+    // 넣을 노드 만들기
+    var div = document.createElement("div");
+    var str = document.createTextNode("민선이 힘내!");
+    div.appendChild(str);
+    //console.log(div);
+
+    parent.insertBefore(div, base); // 부모(parent)를 기준으로 base 앞에 div를 추가
+
+    var standard = document.querySelector(".div-description");
+    standard.insertAdjacentHTML("afterbegin", "<h1>hello world</h1>");
+    // standard element를 기준으로 afterbegin 위치에 <h1>hello world</h1>을 삽입한다.
+
+    var standard2 = document.querySelector("p:nth-child(3)"); // p의 형제 노드중에 몇번째!!
+    console.log(document.querySelector("p:nth-child(1)")); // null??
+    console.log(document.querySelector("p:nth-child(2)"));
+    debugger;
+    standard2.insertAdjacentHTML("beforebegin", "<span>가운데 문단</span>");
+
+</script>
 </body>
 </html>
