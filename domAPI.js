@@ -15,7 +15,7 @@
 
     // 2. insertBefore메서드를 사용해서, orange와  banana 사이에 새로운 과일을 추가
 
-        var banana = document.querySelector("li:nth-child(3)");
+        var banana = document.querySelector(".first-section-ul > li:nth-of-type(3)");
         var mango = document.createElement("li");
         var text = document.createTextNode("mango");
         mango.appendChild(text);
