@@ -7,8 +7,12 @@ oReg.addEventListener("readystatechange", function () {
 
     if(this.readyState == 4 && this.status == 200) {
         var response = this.responseText;
-        console.log(response);
+        console.log(typeof response); // string
+        var jsonobj = JSON.parse(response); // json 형태로 파싱, type은 object
+        console.log(jsonobj.name); // key값으로 출력가능
     }
+
+    // 참고 : 개발자도구에서 다른 도메인간 ajax 통신이 XHR에서 안이루어지고 JS에 있다면 jSONP 이용한 것
 });
 
 //oReg.open("GET","http://www.jsstudy.test");
