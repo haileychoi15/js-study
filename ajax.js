@@ -1,7 +1,3 @@
-function regListener(){
-
-}
-
 var oReg = new XMLHttpRequest();
 oReg.addEventListener("readystatechange", function () {
 
@@ -37,7 +33,7 @@ POST 요청을 보내봅시다. 주로 JSON을 보내거나 FormData를 body에 
  */
 
 var xhr = new XMLHttpRequest();
-var data = {
+var data1 = {
     name: 'zerocho',
     birth: 1994,
 };
@@ -50,7 +46,7 @@ xhr.onload = function() {
 };
 xhr.open('POST', 'https://www.zerocho.com/api/post/json');
 xhr.setRequestHeader('Content-Type', 'application/json'); // 컨텐츠타입을 json으로
-xhr.send(JSON.stringify(data));
+xhr.send(JSON.stringify(data1));
 
 
 // form data 보내기
