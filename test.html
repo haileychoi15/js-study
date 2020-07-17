@@ -24,9 +24,31 @@
             font-size: 0.8em;
             color: green;
         }
+        .change{
+            border: orange 1px solid;
+            width: 200px;
+            position: relative;
+            left: 100px;
+            transform: scale(1);
+            transition: transform 2s ease-in-out;
+        }
+        .hover-left{
+            background-color: coral;
+            width: 200px;
+            transition: all 3s;
+        }
+
+        .hover-left:hover{
+            opacity: 0.5;
+            transform: rotate(5turn);
+        }
     </style>
 </head>
 <body>
+
+    <h1>css transition</h1>
+    <div class="change">제 이름은 최유영입니다.</div>
+    <div class="hover-left">빙글빙글</div>
 
     <h1>requestAnimationFrame</h1>
     <div class="outside">좋아하는 과일</div>
@@ -92,6 +114,8 @@
 <script src="event.js"></script>
 <script src="domAPI.js"></script>
 <script src="domNode.js"></script>
+<script src="cssTransition.js"></script>
+
 
 
 
