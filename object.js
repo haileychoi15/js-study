@@ -1,4 +1,3 @@
-<script>
 var myfriend = {key : "value",
                 addition : [
                     {name:'yuyeong'}, {age:25}
@@ -182,5 +181,3 @@ function findSk(data){
 
 findSk(data2);
 alert(result2);
-
-</script>

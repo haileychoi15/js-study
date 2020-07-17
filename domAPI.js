@@ -1,49 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>JS Bin</title>
-    <style>
-        .red{
-            color: red;
-        }
-        .green{
-            color: green;
-        }
-        .blue{
-            color: blue;
-        }
-    </style>
-</head>
-<body>
-<h1>selector test</h1>
-
-<section>
-    <h2> red section </h2>
-    <ul class="first-section-ul">
-        <li class="red">apple</li>
-        <li class="red">orange</li>
-        <li>banana</li>
-        <li>grape</li>
-        <li>strawberry</li>
-    </ul>
-</section>
-
-<Br>
-<section>
-    <h2> blue section </h2>
-    <ul>
-        <li class="green blue">apple</li>
-        <li class="red">orange</li>
-        <li>banana</li>
-        <li>grape</li>
-        <li>strawberry</li>
-    </ul>
-</section>
-
-</body>
-<script>
 
     // 1. strawberry 아래에 새로운 과일을 하나 더 추가
 
@@ -105,10 +59,7 @@
             // var ul = v.parentElement;
             // var h2 = ul.previousElementSibling;
             var section = v.closest("section"); // 바로 h2로 갈 수 없다. closest는 형제노드가 아닌 상위노드로만 탐색
-            var h2 = section.querySelector("h2");
+            var h2 = section.querySelector("h4");
             //h2.remove();
             section.removeChild(h2);
         });
-
-</script>
-</html>
