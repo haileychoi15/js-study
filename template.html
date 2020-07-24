@@ -3,18 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        li {
+            list-style: none;
+        }
+        .comment{
+            padding-left: 5%;
+            border-bottom: black solid 1px;
+        }
+        .show2{
+            background-color: #a4fcd0;
+        }
+        .show{
+            background-color: skyblue;
+        }
+    </style>
 </head>
 <body>
-    <h2>template test example</h2>
-    <ul class="content"></ul>
+    <h1>template using handlebar</h1>
+    <ul class="show2"></ul>
+
+    <h1>template test example</h1>
+    <ul class="show"></ul>
 </body>
-    <script id="template-list-item" type="text/template">
+    <script type="myTemplate" id="listTemplate">
+        <li>
+            <h3>게시글</h3>
+            <div>게시자 : {{name}}</div>
+            <div class="content">{{content}}</div>
+            <div>좋아요 개수 <span>{{like}}</span></div>
+            {{#likes like}}
+                {{like}}
+            {{/likes}}
+
+            <div class="comment">
+                <h4>댓글목록</h4>
+                {{#if comment}}
+                    {{#each comment}}
+                    <div>{{@index}}번째 댓글 : {{this}}</div>
+                    {{/each}}
+                {{else}}
+                    <div>댓글이 없습니다.</div>
+                {{/if}}
+            </div>
+        </li>
+    </script>
+    <script type="text/template" id="template-list-item">
         <li>
             <h4>{title}</h4><p>{content}</p><div>{price}</div>
         </li>
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
     <script>
+
+        var data2 = [
+            {"id" : 88, "name" : "crong", "content" : "새로운글을 올렸어요", "like" : 5, "comment" : ["댓글이다", "잘했어요"]},
+            {"id" : 28, "name" : "hary", "content" : "전 오늘도 노래를 불렀어요", "like" : 0, "comment" : ["제발고만..","듣고싶네요 그노래"]},
+            {"id" : 23, "name" : "pororo", "content" : "크롱이 항상 말썽을 피워서 행복해~", "like" : 4, "comment" : []},
+            {"id" : 5, "name" : "pobi", "content" : "물고기를 한마리도 잡지 못하다니..", "like" : 5, "comment" : ["댓글이다", "멋진글이네요", "잘봤습니다"]}
+        ];
+
+        //Handlebars help function
+        Handlebars.registerHelper("likes",function (like) {
+
+            if(like > 4) return "<span>축하해요 좋아요 수가 "+like+"개 이상입니다.</span>";
+            else if(like < 1) return "좋아요가 없습니다.";
+            else return like +"개의 좋아요가 있습니다.";
+        });
+
+        var template = document.querySelector("#listTemplate").innerHTML;
+        // pre compile
+        var bindTemplate = Handlebars.compile(template); // compile는 함수를 반환하는 함수
+
+        /* result = "";
+        data2.forEach(function (v) {
+            result += bindTemplate(v);
+        });*/
+
+        var result = data2.reduce(function(prev, next){
+            return prev + bindTemplate(next);
+        },"");
+
+        document.querySelector(".show2").innerHTML = result;
+
         // script태그는 type이 javascript가 아니라면 렌더링하지않고 무시하기 때문에 이것을 이용
 
         var data = [
@@ -41,7 +112,6 @@
             ];
 
         var html = document.querySelector("#template-list-item").innerHTML;
-
         var resultHTML = "";
         data.forEach(function (v) { //object
 
@@ -50,9 +120,7 @@
                               .replace("{price}",v.price);
         });
 
-        var content = document.querySelector(".content");
-        content.innerHTML = resultHTML;
-
+        document.querySelector(".show").innerHTML = resultHTML;
 
         // ES6 template literal
         template = (title, content, price) => {

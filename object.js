@@ -181,3 +181,63 @@ function findSk(data){
 
 findSk(data2);
 alert(result2);
+
+// 객체 리터럴
+var healthObj = {
+    name : "달리기",
+    lastTime : "PM10:12",
+    showHealth : function () {
+        console.log(this.name + "님, 오늘은 " + this.lastTime + "에 운동을 하셨네요");
+    }
+};
+// 객체 안에서 this는 그 객체 자신을 가리킨다.
+healthObj.showHealth();
+
+healthObj.lastTime = "AM 06:20";
+healthObj.showHealth();
+
+// context
+// JavaScript에는 전역스크립트나 함수가 실행될 때 실행문맥(Execution context)이 생성
+// 모든 context에는 참조하고 있는 객체(thisBinding이라 함)가 존재하는데, 현재 context가 참조하고 있는 객체를 알기 위해서는 this를 사용할 수 있다.
+
+function get() {
+    return this;
+}
+get(); // window. 함수가 실행될 때의 context는 window 객체를 참조
+new get(); // object. new 키워드를 쓰면 새로운 object context가 생성
+
+
+// bind
+// function이라는 것이 객체로 동작된다는 정보를 알려준다.
+// 또 다른 함수를 반환하는 함수이다.
+// this가 가리키는 것을 바꿔준다.
+var healthObj = {
+    name : "달리기",
+    lastTime : "PM10:12",
+    showHealth : function () {
+
+        setTimeout(function(){ // 여기서 this는 window
+            console.log("this : "+this);
+            console.log(this.name + "님, 오늘은 " + this.lastTime + "에 운동을 하셨네요");
+        }.bind(this), 500);
+        // showHealth 객체의 this를 binding 해준다.
+    }
+};
+
+healthObj.showHealth();
+
+// es6 arrow 함수로 쓰면 this가 달라진다?
+// 함수가 속해있는 context를 유지하면서 동작한다. bind 안해도 this가 healthObjES6를 카리킨다.
+var healthObjES6 = {
+    name : "달리기",
+    lastTime : "PM10:12",
+    showHealth : function () {
+
+        setTimeout( () => { // 여기서 this는 window
+            console.log("this : "+this);
+            console.log(this.name + "님, 오늘은 " + this.lastTime + "에 운동을 하셨네요");
+        }, 500); // bind하지 않음
+    }
+};
+
+healthObjES6.showHealth();
